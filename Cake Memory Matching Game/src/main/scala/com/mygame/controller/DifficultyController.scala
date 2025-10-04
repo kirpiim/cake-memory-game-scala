@@ -1,25 +1,21 @@
 package com.mygame.controller
 
-import scalafx.Includes._
-import scalafxml.core.{FXMLLoader, NoDependencyResolver}
-import scalafxml.core.macros.sfxml
+import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.layout.AnchorPane
 import javafx.event.ActionEvent
-import javafx.fxml.FXML
 
-@sfxml
-class DifficultyController(
-                            private val mainLayout: AnchorPane
-                          ) {
+class DifficultyController {
+
+  @FXML private var mainLayout: AnchorPane = _
 
   @FXML
   def handleEasyButton(event: ActionEvent): Unit = {
-    loadGame("/com.mygame.view/EasyGame.fxml")
+    loadGame("/com/mygame/view/EasyGame.fxml")
   }
 
   @FXML
   def handleHardButton(event: ActionEvent): Unit = {
-    loadGame("/com.mygame.view/HardGame.fxml")
+    loadGame("/com/mygame/view/HardGame.fxml")
   }
 
   private def loadGame(fxmlPath: String): Unit = {
@@ -27,10 +23,8 @@ class DifficultyController(
     if (resource == null) {
       throw new IllegalStateException(s"FXML resource not found: $fxmlPath")
     }
-    val loader = new FXMLLoader(resource, NoDependencyResolver)
-    loader.load()
-    val roots = loader.getRoot[javafx.scene.layout.AnchorPane]
+    val loader = new FXMLLoader(resource)
+    val roots = loader.load[AnchorPane]()
     mainLayout.getChildren.setAll(roots)
   }
 }
-
