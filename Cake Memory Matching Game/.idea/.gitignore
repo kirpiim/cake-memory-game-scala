@@ -1,6 +1,32 @@
-# Default ignored files
-/shelf/
-/workspace.xml
+# IntelliJ IDEA
 .idea/
 *.iml
+*.iws
+out/
+
+# SBT
 target/
+project/project/
+project/target/
+project/streams/
+target/streams/
+
+# Logs
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Exported build artifacts
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Generated files
+dist/
+build/
