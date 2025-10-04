@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background-pane" stylesheets="@../stylerules.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mygame.controller.MainController">
+   <children>
+      <Label fx:id="rules" layoutX="94.0" layoutY="87.0" prefHeight="267.0" prefWidth="423.0" text="Flip two images to find a matching pair. If they don’t match, just try again.In Easy Mode, you have fewer images and one extra image that won’t be matched. In Hard Mode, you have more images to match.Take your time to find all the pairs and win the game. Good luck!" textAlignment="JUSTIFY" wrapText="true">
+         <font>
+            <Font name="Tahoma" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="mainpageButton" layoutX="242.0" layoutY="322.0" mnemonicParsing="false" onAction="#handleMainPageButton" style="-fx-background-color: #c3b5ed;" text="MAIN PAGE">
+         <font>
+            <Font name="Tahoma Bold" size="16.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
