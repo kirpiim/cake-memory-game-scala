@@ -1,12 +1,12 @@
 package com.mygame.controller
 
-import scalafxml.core.macros.sfxml
 import javafx.fxml.FXML
 import javafx.scene.layout.{AnchorPane, GridPane}
 import javafx.scene.image.ImageView
 import javafx.scene.input.MouseEvent
 import javafx.animation.{KeyFrame, Timeline}
-import javafx.util.{Duration => JFXDuration}
+import javafx.event.{ActionEvent, EventHandler}
+import javafx.util.Duration
 
 abstract class GameController {
 
@@ -38,12 +38,10 @@ abstract class GameController {
   def handleImageClick(event: MouseEvent): Unit = {
     val clickedImage = event.getSource.asInstanceOf[ImageView]
 
-    // If it's the first click, store it
     if (firstClick.isEmpty) {
       firstClick = Some(clickedImage)
       clickedImage.setOpacity(1.0)
     } else if (secondClick.isEmpty && firstClick.get != clickedImage) {
-      // If it's the second click, store it
       secondClick = Some(clickedImage)
       clickedImage.setOpacity(1.0)
       checkForMatch()
@@ -51,14 +49,16 @@ abstract class GameController {
   }
 
   protected def checkForMatch(): Unit = {
+    // guard just in case
+    if (firstClick.isEmpty || secondClick.isEmpty) return
+
     val firstImageView = firstClick.get
     val secondImageView = secondClick.get
 
-    val firstImageUrl = Option(firstImageView.getImage.impl_getUrl).getOrElse("")
-    val secondImageUrl = Option(secondImageView.getImage.impl_getUrl).getOrElse("")
+    val firstImageUrl  = Option(firstImageView.getImage).map(_.getUrl).getOrElse("")
+    val secondImageUrl = Option(secondImageView.getImage).map(_.getUrl).getOrElse("")
 
     if (firstImageUrl.nonEmpty && firstImageUrl == secondImageUrl) {
-      // Match found, keep images visible
       println("Match found!")
       firstImageView.setOpacity(1.0)
       secondImageView.setOpacity(1.0)
@@ -66,28 +66,32 @@ abstract class GameController {
       matchesFound += 1
       println(s"Matches found: $matchesFound")
 
-      // Check if the game is won
       if (matchesFound == getTotalPairs) {
-        endGame(didWin = true)
+        endGame(true)
       }
     } else {
-      // No match, hide images after 2 seconds
       println("No match found.")
-      val timeline = new Timeline(new KeyFrame(JFXDuration.seconds(2), _ => {
-        firstImageView.setOpacity(0.0)
-        secondImageView.setOpacity(0.0)
-      }))
+      val timeline = new Timeline(
+        new KeyFrame(Duration.seconds(2),
+          new EventHandler[ActionEvent] {
+            override def handle(e: ActionEvent): Unit = {
+              // ensure nodes still exist
+              if (firstImageView != null) firstImageView.setOpacity(0.0)
+              if (secondImageView != null) secondImageView.setOpacity(0.0)
+            }
+          }
+        )
+      )
       timeline.setCycleCount(1)
       timeline.play()
     }
 
-    // Reset for the next round
+    // reset for next round
     firstClick = None
     secondClick = None
   }
 
-
+  // Abstract methods — subclasses MUST implement these
   def getTotalPairs: Int
-
   def endGame(didWin: Boolean): Unit
 }
