@@ -1,18 +1,13 @@
 package com.mygame.controller
 
-import scalafx.Includes.{getClass, _}
-import scalafxml.core.{FXMLLoader, NoDependencyResolver}
-import scalafxml.core.macros.sfxml
-import javafx.scene.layout.AnchorPane
-import javafx.fxml.FXML
+import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.control.Button
+import javafx.scene.layout.AnchorPane
 import javafx.event.ActionEvent
 
-@sfxml
-class MainController(
-                      @FXML private var mainLayout: AnchorPane
-                    ) {
+class MainController {
 
+  @FXML private var mainLayout: AnchorPane = _
   @FXML private var playgameButton: Button = _
   @FXML private var rulesButton: Button = _
 
@@ -31,62 +26,25 @@ class MainController(
     showMainPage()
   }
 
-  def showGameDifficulty(): Unit = {
-    val resource = getClass.getResource("/com.mygame.view/GameDifficulty.fxml")
-    if (resource == null) {
-      throw new IllegalStateException("FXML resource not found: /com.mygame.view/GameDifficulty.fxml")
-    }
-
-    val loader = new FXMLLoader(resource, NoDependencyResolver)
-    loader.load()
-
-    val roots = loader.getRoot[AnchorPane]
-    if (roots == null) {
-      throw new IllegalStateException("Failed to load GameDifficulty.fxml")
-    }
-
-    mainLayout.getChildren.setAll(roots)
+  private def showGameDifficulty(): Unit = {
+    loadScene("/com/mygame/view/GameDifficulty.fxml")
   }
 
-  def showRules(): Unit = {
-    val resource = getClass.getResource("/com.mygame.view/Rules.fxml")
+  private def showRules(): Unit = {
+    loadScene("/com/mygame/view/Rules.fxml")
+  }
+
+  private def showMainPage(): Unit = {
+    loadScene("/com/mygame/view/MainMenu.fxml")
+  }
+
+  private def loadScene(path: String): Unit = {
+    val resource = getClass.getResource(path)
     if (resource == null) {
-      throw new IllegalStateException("FXML resource not found: /com.mygame.view/Rules.fxml")
+      throw new IllegalStateException(s"FXML resource not found: $path")
     }
-
-    val loader = new FXMLLoader(resource, NoDependencyResolver)
-    loader.load()
-
-    val roots = loader.getRoot[AnchorPane]
-    if (roots == null) {
-      throw new IllegalStateException("Failed to load Rules.fxml")
-    }
-
+    val loader = new FXMLLoader(resource)
+    val roots = loader.load[AnchorPane]()
     mainLayout.getChildren.setAll(roots)
   }
-  def showMainPage(): Unit = {
-    val resource = getClass.getResource("/com.mygame.view/MainMenu.fxml")
-    if (resource == null) {
-      throw new IllegalStateException("FXML resource not found: /com.mygame.view/MainMenu.fxml")
-    }
-
-    val loader = new FXMLLoader(resource, NoDependencyResolver)
-    loader.load()
-
-    val roots = loader.getRoot[AnchorPane]
-    if (roots == null) {
-      throw new IllegalStateException("Failed to load MainMenu.fxml")
-    }
-
-    mainLayout.getChildren.clear()
-    mainLayout.getStylesheets.clear()
-    mainLayout.getChildren.setAll(roots)
- }
 }
-
-
-
-
-
-
-
