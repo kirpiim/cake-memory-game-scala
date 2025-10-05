@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane fx:id="mainLayout" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #dfd8fb;"
+            xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.mygame.controller.HardGameController">
+   <children>
+      <GridPane fx:id="gridPane"
+                prefHeight="400.0"
+                prefWidth="600.0"
+                hgap="5" vgap="5"
+                style="-fx-background-color: #dfd8fb; -fx-grid-lines-visible: true; -fx-border-color: #b8a8f5; -fx-border-width: 2;"
+                AnchorPane.topAnchor="0.0"
+                AnchorPane.bottomAnchor="0.0"
+                AnchorPane.leftAnchor="0.0"
+                AnchorPane.rightAnchor="0.0">
+
+      <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" prefWidth="150.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" prefWidth="150.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" prefWidth="150.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" prefWidth="150.0"/>
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints vgrow="SOMETIMES" prefHeight="100.0"/>
+            <RowConstraints vgrow="SOMETIMES" prefHeight="100.0"/>
+            <RowConstraints vgrow="SOMETIMES" prefHeight="100.0"/>
+            <RowConstraints vgrow="SOMETIMES" prefHeight="100.0"/>
+         </rowConstraints>
+         <children>
+            <!-- 16 cards total -->
+            <ImageView fx:id="imageView1"  fitHeight="100.0" fitWidth="140.0" preserveRatio="true" pickOnBounds="true" style="-fx-effect: dropshadow(gaussian, #888, 5, 0.5, 0, 0);" onMouseClicked="#handleImageClick" opacity="0.0"/>
+            <ImageView fx:id="imageView2"  fitHeight="100.0" fitWidth="140.0" preserveRatio="true" pickOnBounds="true" style="-fx-effect: dropshadow(gaussian, #888, 5, 0.5, 0, 0);" onMouseClicked="#handleImageClick" opacity="0.0" GridPane.columnIndex="1"/>
+            <ImageView fx:id="imageView3"  fitHeight="100.0" fitWidth="140.0" preserveRatio="true" pickOnBounds="true" style="-fx-effect: dropshadow(gaussian, #888, 5, 0.5, 0, 0);" onMouseClicked="#handleImageClick" opacity="0.0" GridPane.columnIndex="2"/>
+            <ImageView fx:id="imageView4"  fitHeight="100.0" fitWidth="140.0" preserveRatio="true" pickOnBounds="true" style="-fx-effect: dropshadow(gaussian, #888, 5, 0.5, 0, 0);" onMouseClicked="#handleImageClick" opacity="0.0" GridPane.columnIndex="3"/>
+
+            <ImageView fx:id="imageView5"  fitHeight="100.0" fitWidth="140.0" preserveRatio="true" pickOnBounds="true" style="-fx-effect: dropshadow(gaussian, #888, 5, 0.5, 0, 0);" onMouseClicked="#handleImageClick" opacity="0.0" GridPane.rowIndex="1"/>
+            <ImageView fx:id="imageView6"  fitHeight="100.0" fitWidth="140.0" preserveRatio="true" pickOnBounds="true" style="-fx-effect: dropshadow(gaussian, #888, 5, 0.5, 0, 0);" onMouseClicked="#handleImageClick" opacity="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <ImageView fx:id="imageView7"  fitHeight="100.0" fitWidth="140.0" preserveRatio="true" pickOnBounds="true" style="-fx-effect: dropshadow(gaussian, #888, 5, 0.5, 0, 0);" onMouseClicked="#handleImageClick" opacity="0.0" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+            <ImageView fx:id="imageView8"  fitHeight="100.0" fitWidth="140.0" preserveRatio="true" pickOnBounds="true" style="-fx-effect: dropshadow(gaussian, #888, 5, 0.5, 0, 0);" onMouseClicked="#handleImageClick" opacity="0.0" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+
+            <ImageView fx:id="imageView9"  fitHeight="100.0" fitWidth="140.0" preserveRatio="true" pickOnBounds="true" style="-fx-effect: dropshadow(gaussian, #888, 5, 0.5, 0, 0);" onMouseClicked="#handleImageClick" opacity="0.0" GridPane.rowIndex="2"/>
+            <ImageView fx:id="imageView10" fitHeight="100.0" fitWidth="140.0" preserveRatio="true" pickOnBounds="true" style="-fx-effect: dropshadow(gaussian, #888, 5, 0.5, 0, 0);" onMouseClicked="#handleImageClick" opacity="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <ImageView fx:id="imageView11" fitHeight="100.0" fitWidth="140.0" preserveRatio="true" pickOnBounds="true" style="-fx-effect: dropshadow(gaussian, #888, 5, 0.5, 0, 0);" onMouseClicked="#handleImageClick" opacity="0.0" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+            <ImageView fx:id="imageView12" fitHeight="100.0" fitWidth="140.0" preserveRatio="true" pickOnBounds="true" style="-fx-effect: dropshadow(gaussian, #888, 5, 0.5, 0, 0);" onMouseClicked="#handleImageClick" opacity="0.0" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+
+            <ImageView fx:id="imageView13" fitHeight="100.0" fitWidth="140.0" preserveRatio="true" pickOnBounds="true" style="-fx-effect: dropshadow(gaussian, #888, 5, 0.5, 0, 0);" onMouseClicked="#handleImageClick" opacity="0.0" GridPane.rowIndex="3"/>
+            <ImageView fx:id="imageView14" fitHeight="100.0" fitWidth="140.0" preserveRatio="true" pickOnBounds="true" style="-fx-effect: dropshadow(gaussian, #888, 5, 0.5, 0, 0);" onMouseClicked="#handleImageClick" opacity="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+            <ImageView fx:id="imageView15" fitHeight="100.0" fitWidth="140.0" preserveRatio="true" pickOnBounds="true" style="-fx-effect: dropshadow(gaussian, #888, 5, 0.5, 0, 0);" onMouseClicked="#handleImageClick" opacity="0.0" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+            <ImageView fx:id="imageView16" fitHeight="100.0" fitWidth="140.0" preserveRatio="true" pickOnBounds="true" style="-fx-effect: dropshadow(gaussian, #888, 5, 0.5, 0, 0);" onMouseClicked="#handleImageClick" opacity="0.0" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
