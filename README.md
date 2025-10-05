@@ -101,7 +101,7 @@ CakeMemoryGame/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/<your-username>/cake-memory-matching-game.git
+   git clone https://github.com/kirpiim>/cake-memory-matching-game.git
    cd cake-memory-matching-game
    ```
 2. **Open in IntelliJ IDEA**
