@@ -1,19 +1,35 @@
 package com.mygame.controller
 
-import javafx.fxml.FXML
+import javafx.fxml.{FXML, FXMLLoader}
+import javafx.scene.image.ImageView
 import javafx.scene.input.MouseEvent
+import javafx.scene.layout.AnchorPane
+import javafx.stage.Stage
 
 class HardGameController extends GameController {
 
   @FXML
-  override def handleImageClick(event: MouseEvent): Unit = {
-    super.handleImageClick(event)
+  def handleImageClick(event: MouseEvent): Unit = {
+    val imageView = event.getSource.asInstanceOf[ImageView]
+    super.handleImageClick(imageView)
   }
 
   override def getTotalPairs: Int = 8
 
   override def endGame(didWin: Boolean): Unit = {
-    if (didWin) println("Congratulations! You won the hard game!")
-    else println("The hard game got the best of you. Try again!")
+    if (didWin) {
+      try {
+        val resource = getClass.getResource("/com/mygame/view/YouWon.fxml")
+        val loader = new FXMLLoader(resource)
+        val root = loader.load[AnchorPane]()
+        val stage = gridPane.getScene.getWindow.asInstanceOf[Stage]
+        stage.getScene.setRoot(root)
+      } catch {
+        case e: Exception =>
+          e.printStackTrace()
+      }
+    } else {
+      println("Game lost! Try again.")
+    }
   }
 }
