@@ -4,6 +4,8 @@ import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.control.Button
 import javafx.scene.layout.AnchorPane
 import javafx.event.ActionEvent
+import javafx.scene.Scene
+import javafx.stage.Stage
 
 class MainController {
 
@@ -13,38 +15,32 @@ class MainController {
 
   @FXML
   def handlePlayGameButton(event: ActionEvent): Unit = {
-    showGameDifficulty()
+    loadScene("/com/mygame/view/GameDifficulty.fxml")
   }
 
   @FXML
   def handleRulesButton(event: ActionEvent): Unit = {
-    showRules()
+    loadScene("/com/mygame/view/Rules.fxml")
   }
 
   @FXML
   def handleMainPageButton(event: ActionEvent): Unit = {
-    showMainPage()
-  }
-
-  private def showGameDifficulty(): Unit = {
-    loadScene("/com/mygame/view/GameDifficulty.fxml")
-  }
-
-  private def showRules(): Unit = {
-    loadScene("/com/mygame/view/Rules.fxml")
-  }
-
-  private def showMainPage(): Unit = {
     loadScene("/com/mygame/view/MainMenu.fxml")
   }
 
+  /** Loads a new FXML and sets it as the current window’s scene. */
   private def loadScene(path: String): Unit = {
     val resource = getClass.getResource(path)
     if (resource == null) {
       throw new IllegalStateException(s"FXML resource not found: $path")
     }
+
     val loader = new FXMLLoader(resource)
-    val roots = loader.load[AnchorPane]()
-    mainLayout.getChildren.setAll(roots)
+    val root = loader.load[javafx.scene.Parent]()
+    val stage = mainLayout.getScene.getWindow.asInstanceOf[Stage]
+    val scene = new Scene(root)
+
+    stage.setScene(scene)
+    stage.show()
   }
 }
